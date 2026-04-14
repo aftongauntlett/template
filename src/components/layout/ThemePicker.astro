@@ -1,0 +1,34 @@
+---
+import { THEMES } from '../../config/site';
+---
+
+<div class="theme-picker-wrap">
+  <label class="theme-picker-label" for="theme-picker">Theme</label>
+  <select
+    id="theme-picker"
+    name="theme-picker"
+    class="theme-picker"
+    aria-label="Choose color theme"
+  >
+    {THEMES.map((theme) => <option value={theme}>{theme}</option>)}
+  </select>
+</div>
+
+<script is:inline>
+  const key = 'site-theme';
+  const picker = document.getElementById('theme-picker');
+
+  if (picker instanceof HTMLSelectElement) {
+    const saved = localStorage.getItem(key);
+    const initial = saved && ['sprout', 'ocean', 'earth'].includes(saved) ? saved : 'sprout';
+
+    document.documentElement.dataset.theme = initial;
+    picker.value = initial;
+
+    picker.addEventListener('change', () => {
+      const value = picker.value;
+      document.documentElement.dataset.theme = value;
+      localStorage.setItem(key, value);
+    });
+  }
+</script>
