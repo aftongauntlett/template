@@ -1,18 +1,22 @@
 ---
 import { THEMES } from '../../config/site';
+import StyledDropdown from '../ui/StyledDropdown.astro';
+
+const themeOptions = THEMES.map((themeName) => ({
+  value: themeName,
+  label: themeName.charAt(0).toUpperCase() + themeName.slice(1),
+}));
 ---
 
-<div class="theme-picker-wrap">
-  <label class="theme-picker-label" for="theme-picker">Theme</label>
-  <select
-    id="theme-picker"
-    name="theme-picker"
-    class="theme-picker"
-    aria-label="Choose color theme"
-  >
-    {THEMES.map((theme) => <option value={theme}>{theme}</option>)}
-  </select>
-</div>
+<StyledDropdown
+  id="theme-picker"
+  name="theme-picker"
+  label="Theme"
+  labelPosition="left"
+  className="theme-picker-dropdown"
+  ariaLabel="Choose color theme"
+  options={themeOptions}
+/>
 
 <script is:inline>
   const key = 'site-theme';
@@ -20,7 +24,8 @@ import { THEMES } from '../../config/site';
 
   if (picker instanceof HTMLSelectElement) {
     const saved = localStorage.getItem(key);
-    const initial = saved && ['sprout', 'ocean', 'earth'].includes(saved) ? saved : 'sprout';
+    const options = Array.from(picker.options).map((option) => option.value);
+    const initial = saved && options.includes(saved) ? saved : picker.value;
 
     document.documentElement.dataset.theme = initial;
     picker.value = initial;
