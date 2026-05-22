@@ -2,12 +2,26 @@
 
 Always treat this repository as a reusable Astro project template.
 
+## Operating Modes
+
+Pick one mode before making changes:
+
+1. Template Maintainer mode:
+	- Use when working on this source template repository itself.
+	- You may add or refactor template code, components, and architecture.
+	- Read `docs/agents/template-maintainer/README.md` first.
+2. Site Builder mode:
+	- Use when working in a repository cloned from this template.
+	- Default to content/theme/layout updates using existing assets only.
+	- Read `docs/agents/site-builder/README.md` first.
+
 ## Required Standards
 
 - Enforce WCAG 2.2 AA baseline for all UI.
 - Keep full keyboard navigation and visible focus styles.
 - Use semantic HTML first, ARIA only when needed.
 - Use design tokens and theme variables; avoid hard-coded component colors.
+- Motion and hover effects are allowed when purposeful; always respect reduced-motion preferences and keep non-motion state cues.
 - Prefer reusable components and clear APIs.
 - Keep code readable and maintainable.
 - Keep page structure consistent across sections/pages: shared container spacing, gap scale, typography rhythm, and heading hierarchy.
@@ -22,6 +36,14 @@ Before creating any new UI primitive, check and reuse existing components in `sr
 - Use `src/components/ui/Card.astro` for card surfaces before creating new one-off card patterns.
 - If an icon primitive is needed and no reusable icon component exists, create one reusable icon component first, then consume it.
 - Prefer extending existing component APIs over duplicating similar components.
+
+## Site Builder Constraints (Default For Cloned Projects)
+
+- Do not create new components, routes, endpoints, or utilities.
+- Do not add backend integrations or new dependencies.
+- Reuse existing pages, sections, components, and design tokens.
+- Focus on rearranging component placement, updating copy, updating metadata, and tuning tokens/theme values.
+- If custom feature work is requested, recommend implementing it in the template source repo first.
 
 ## Required Validation Before Completion
 
@@ -39,19 +61,16 @@ Run and pass:
 2. README.md
 3. docs/STANDARDS.md
 4. docs/WCAG_2.2_CHECKLIST.md
-5. docs/DEVELOPER_HANDOFF.md
-6. docs/AUTH_SUPABASE_PLAYBOOK.md
-7. docs/ECOMMERCE_PLAYBOOK.md
-8. docs/SCHEDULING_CALENDARS_PLAYBOOK.md
-9. docs/FREE_TIER_OPS_KEEPALIVE.md
-10. docs/DYNAMIC_SCOPE_DECISION_GUIDE.md
-11. docs/PROJECT_BRIEF_TEMPLATE.md
+5. docs/AGENT_QUICKSTART.md
+6. docs/agents/template-maintainer/README.md (template source mode)
+7. docs/agents/site-builder/README.md (cloned project mode)
+8. docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md (when changing shared layout/styles/components)
+9. docs/agents/template-maintainer/BACKEND_ENABLEMENT.md (only if backend is explicitly requested)
+10. docs/PRD_MOTION_AND_INTERACTION_COMPONENTS.md (when planning reusable motion/hover primitives)
+11. docs/PRD_LAYOUT_VARIANTS.md (when planning reusable layout shells)
+12. docs/PRD_COMPONENT_LIBRARY_ROADMAP.md (when planning reusable component expansion)
+13. docs/PRD_VISUAL_BUILDER_FEASIBILITY.md (when evaluating browser-based composition workflows)
 
-## Contact Stack Notes
+## Backend Default
 
-When implementing contact forms or email delivery, follow docs/DEVELOPER_HANDOFF.md exactly, including env names and anti-abuse controls.
-
-## Starter Endpoint Notes
-
-- Health heartbeat endpoint: `src/pages/api/health.json.ts`
-- Auth status endpoint skeleton: `src/pages/api/auth/status.json.ts`
+Backend is opt-in. Do not add backend scaffolding unless explicitly requested.

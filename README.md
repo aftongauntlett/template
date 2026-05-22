@@ -8,8 +8,8 @@ This template is static-first, accessibility-first, and designed to be cloned fo
 
 - Ship maintainable static websites quickly.
 - Preserve high quality standards on every project.
-- Support optional advanced stacks (auth, APIs, data, dashboards) when needed.
-- Provide agent-ready docs so implementation can start from mission + content brief.
+- Keep cloned projects focused on content, layout, tokens, and accessibility.
+- Provide agent-ready docs with clear rules for template maintenance vs cloned-site editing.
 
 ## Standards
 
@@ -25,14 +25,16 @@ Reference docs:
 
 - docs/STANDARDS.md
 - docs/WCAG_2.2_CHECKLIST.md
+- docs/AGENT_PROMPT_OPENERS.md
 - docs/AGENT_QUICKSTART.md
-- docs/DEVELOPER_HANDOFF.md
-- docs/AUTH_SUPABASE_PLAYBOOK.md
-- docs/ECOMMERCE_PLAYBOOK.md
-- docs/SCHEDULING_CALENDARS_PLAYBOOK.md
-- docs/FREE_TIER_OPS_KEEPALIVE.md
-- docs/DYNAMIC_SCOPE_DECISION_GUIDE.md
-- docs/PROJECT_BRIEF_TEMPLATE.md
+- docs/PRD_LAYOUT_VARIANTS.md
+- docs/PRD_COMPONENT_LIBRARY_ROADMAP.md
+- docs/agents/template-maintainer/README.md
+- docs/agents/site-builder/README.md
+- docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md
+- docs/agents/template-maintainer/BACKEND_ENABLEMENT.md
+- docs/PRD_MOTION_AND_INTERACTION_COMPONENTS.md
+- docs/PRD_VISUAL_BUILDER_FEASIBILITY.md
 
 ## Create New Projects From This Template (GitHub)
 
@@ -74,7 +76,6 @@ Commands:
 CI:
 
 - GitHub Actions workflow: .github/workflows/ci.yml
-- Optional keepalive workflow: .github/workflows/heartbeat.yml (requires `HEARTBEAT_URL` secret)
 
 ## Commit Guardrails (Solo Main Workflow)
 
@@ -95,8 +96,10 @@ This gives fast local quality checks before each commit, even when working direc
 │   ├── instructions/
 │   └── prompts/
 ├── docs/
+│   ├── agents/
+│   │   ├── site-builder/
+│   │   └── template-maintainer/
 │   ├── AGENT_QUICKSTART.md
-│   ├── DEVELOPER_HANDOFF.md
 │   ├── STANDARDS.md
 │   └── WCAG_2.2_CHECKLIST.md
 ├── src/
@@ -121,43 +124,29 @@ This gives fast local quality checks before each commit, even when working direc
 - Reusable styled dropdown with progressive enhancement (native select fallback).
 - Home page sections that can be replaced with client content.
 
-## Contact Stack
+## Optional Backend
 
-When a project includes contact forms/email delivery, follow docs/DEVELOPER_HANDOFF.md exactly:
+Backend features are not included by default.
 
-- Resend for email
-- Cloudflare Turnstile for bot protection
-- Upstash Redis for rate limiting
+If backend behavior is explicitly requested, use:
 
-## Common Feature Playbooks
-
-Use these playbooks when projects move beyond marketing pages:
-
-- Auth and user accounts: docs/AUTH_SUPABASE_PLAYBOOK.md
-- Ecommerce and payments: docs/ECOMMERCE_PLAYBOOK.md
-- Scheduling and calendars: docs/SCHEDULING_CALENDARS_PLAYBOOK.md
-- Free-tier uptime and keepalive: docs/FREE_TIER_OPS_KEEPALIVE.md
-
-Planning docs:
-
-- Dynamic scope decision guide: docs/DYNAMIC_SCOPE_DECISION_GUIDE.md
-- Agent-ready brief template: docs/PROJECT_BRIEF_TEMPLATE.md
-
-Template starter endpoints and utilities:
-
-- Health endpoint: `src/pages/api/health.json.ts`
-- Auth skeleton endpoint: `src/pages/api/auth/status.json.ts`
-- Health utility: `src/utils/health.ts`
-- Auth utility: `src/utils/auth.ts`
+- docs/agents/template-maintainer/BACKEND_ENABLEMENT.md
 
 ## Agent Workflow
 
 For AI-assisted implementation:
 
 1. Fill PROJECT_BRIEF.md using docs/PROJECT_BRIEF_TEMPLATE.md.
-2. Agent reads the docs listed in docs/AGENT_QUICKSTART.md.
-3. Agent implements pages/components using existing patterns.
-4. Agent runs npm run validate and resolves failures.
+2. Select agent mode in docs/AGENT_QUICKSTART.md.
+3. In cloned projects, prioritize rearranging existing components, updating copy, metadata, and tokens.
+4. In this template source repo, implement reusable code changes when new features are requested.
+5. Run npm run validate and resolve failures.
+
+Prompt starters:
+
+- .github/prompts/template-maintainer/maintain-template.prompt.md
+- .github/prompts/site-builder/use-template-without-new-code.prompt.md
+- .github/prompts/new-site-kickoff.prompt.md (legacy compatibility prompt)
 
 ## Notes
 

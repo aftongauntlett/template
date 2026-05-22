@@ -10,6 +10,7 @@ This repository is a reusable Astro template for mission-driven organizations an
 - ARIA attributes only when semantic HTML is not enough.
 - Visible focus states and sufficient color contrast.
 - Design tokens for color, spacing, type, and sizing. No hard-coded component colors.
+- Thoughtful motion and hover affordances are allowed when they are purposeful and include reduced-motion-safe behavior.
 - Reusable components over copy-paste sections.
 - Strict checks before completion: typecheck, lint, tests, build.
 - Commit-time checks pass locally via `npm run precommit:check`.
@@ -19,14 +20,17 @@ This repository is a reusable Astro template for mission-driven organizations an
 - Prefer static-first architecture; add server routes only when necessary.
 - Keep component APIs small and predictable.
 - Keep CSS tokenized and theme-aware.
+- Prefer lightweight CSS and progressive enhancement for motion before adding heavy animation libraries.
+- Do not rely on motion alone to communicate meaning; pair motion with visible state cues such as color, border, text, or icon changes.
 - Keep business logic in utility modules with tests.
-- Document setup for external services (Resend, Turnstile, Upstash) before implementation.
+- Keep advanced effects (for example canvas trails or timeline animations) opt-in and performance-tested.
 
 ## Page Structure Consistency
 
 - Keep a consistent page scaffold across all pages and sections: container width, section spacing, and gap scale should follow shared tokens and existing layout classes.
 - Maintain consistent typography usage: shared heading/body styles, text rhythm, and component text patterns should match existing sections.
 - Maintain consistent interaction styles: hover, focus-visible, and active states should reuse existing component behavior and tokenized styles.
+- Keep motion behavior consistent: use shared duration/easing tokens and provide reduced-motion fallbacks.
 - Heading order must stay consistent: one H1 per page, section-level H2s, and H3s only as subheadings under the current H2 context.
 - Do not mix unrelated one-off layout systems between pages; if the project expands from single-page to multi-page, preserve the same spacing, structure, and component language.
 - Template/demo buttons should be non-navigational by default; only add real button/link destinations when intentionally requested for production behavior.
