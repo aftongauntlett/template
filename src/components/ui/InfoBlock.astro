@@ -1,0 +1,16 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+  class?: string;
+}
+
+const { label, href, class: className = '' } = Astro.props;
+---
+
+<div class={`info-block ${className}`.trim()}>
+  <p class="info-block-label">{label}</p>
+  <div class="info-block-content">
+    {href ? <a href={href}><slot /></a> : <slot />}
+  </div>
+</div>

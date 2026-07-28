@@ -86,22 +86,7 @@ Update any docs and tests needed.
 Keep APIs small and token-driven.
 Run npm run validate and npm run precommit:check.
 
-## 6) Implement motion primitive from PRD
-
-Use Template Maintainer mode.
-Reference and follow these files first:
-- docs/PRD_MOTION_AND_INTERACTION_COMPONENTS.md
-- docs/agents/template-maintainer/README.md
-- docs/STANDARDS.md
-- docs/WCAG_2.2_CHECKLIST.md
-
-Task:
-Implement Phase 1 item: [insert item, for example CountUpStat or Card hover variants].
-Respect reduced-motion preference and keyboard/focus parity.
-Do not add heavy dependencies unless explicitly approved.
-Run npm run validate and npm run precommit:check.
-
-## 7) Create new reusable layout variant
+## 6) Create new reusable layout variant
 
 Use Template Maintainer mode.
 Reference and follow these files first:
@@ -115,37 +100,9 @@ Keep this as shared template architecture, not one-off page markup.
 Document usage and constraints.
 Run npm run validate and npm run precommit:check.
 
-## 10) Plan and implement layout shell roadmap item
-
-Use Template Maintainer mode.
-Reference and follow these files first:
-- docs/PRD_LAYOUT_VARIANTS.md
-- docs/agents/template-maintainer/README.md
-- docs/STANDARDS.md
-- docs/WCAG_2.2_CHECKLIST.md
-
-Task:
-Implement the next layout roadmap item and update docs/examples.
-Keep spacing and structure token-driven and accessible.
-Run npm run validate and npm run precommit:check.
-
-## 11) Prototype browser-based section composer
-
-Use Template Maintainer mode.
-Reference and follow these files first:
-- docs/PRD_VISUAL_BUILDER_FEASIBILITY.md
-- docs/PRD_LAYOUT_VARIANTS.md
-- docs/PRD_COMPONENT_LIBRARY_ROADMAP.md
-
-Task:
-Build a minimal Level 2 prototype for section composition using approved components only.
-Do not attempt full drag-and-drop first.
-Deliver a small proof with strict schema, reorder controls, and render output.
-Summarize complexity and next decision points.
-
 ## Scope Control Openers
 
-## 8) Force no-new-code behavior
+## 7) Force no-new-code behavior
 
 Use Site Builder mode.
 This task is strictly no-new-code.
@@ -154,7 +111,7 @@ Do not create components, routes, endpoints, utilities, or dependencies.
 Only rearrange existing component usage and edit text/tokens/metadata.
 If you think new architecture is needed, stop and ask for explicit approval.
 
-## 9) Ask for escalation before custom features
+## 8) Ask for escalation before custom features
 
 Use Site Builder mode.
 If this request requires new components or custom feature logic, do not implement immediately.

@@ -17,7 +17,7 @@ Follow these standards when generating or editing code:
 - Prefer reusable components over one-off markup.
 - For select controls, use `src/components/ui/StyledDropdown.astro` instead of ad-hoc dropdown markup.
 - For button-like actions, prefer `src/components/ui/Button.astro` before creating new button patterns.
-- For card surfaces, prefer `src/components/ui/Card.astro` before creating new card patterns.
+- For card surfaces, prefer `src/components/ui/Card.astro` before creating new card patterns. Reserve Card for browsable collections (blog posts, workshop listings) — use `FeatureItem.astro`, `TimelineItem.astro`, or `InfoBlock.astro` for pillars/values, process steps, or contact info instead of defaulting to a card grid.
 - If icons are needed and no shared icon primitive exists, create one reusable icon component first and reuse it.
 - Keep page structure consistent across sections/pages: shared container widths, spacing tokens, gap scale, typography patterns, and heading hierarchy (single H1, then H2/H3).
 - Keep interaction styling consistent across pages: reuse existing hover/focus/active patterns via shared components and tokens.
@@ -29,10 +29,6 @@ Follow these standards when generating or editing code:
 - Keep commit-time checks passing with `npm run precommit:check`.
 - In Site Builder mode, do not add new components/routes/endpoints/utilities unless explicitly requested.
 - Backend changes are opt-in only and should follow `docs/agents/template-maintainer/BACKEND_ENABLEMENT.md` when requested.
-- For reusable motion/hover component planning in Template Maintainer mode, follow `docs/PRD_MOTION_AND_INTERACTION_COMPONENTS.md`.
-- For reusable layout shell planning in Template Maintainer mode, follow `docs/PRD_LAYOUT_VARIANTS.md`.
-- For reusable component roadmap planning in Template Maintainer mode, follow `docs/PRD_COMPONENT_LIBRARY_ROADMAP.md`.
-- For browser-based builder workflow exploration, follow `docs/PRD_VISUAL_BUILDER_FEASIBILITY.md`.
 
 Before completion, run full validation:
 

@@ -18,7 +18,11 @@ This repository is a reusable Astro template for mission-driven organizations an
 ## Implementation Principles
 
 - Prefer static-first architecture; add server routes only when necessary.
+- Keep the baseline template page model to two routes: Home and Example.
+- Use Example as the scaffold when creating additional pages.
+- Keep Example as a local development reference route, not a user-facing production destination.
 - Keep component APIs small and predictable.
+- Reserve `Card` for actual browsable collections with distinct entries to scan (blog posts, workshop listings). Do not default to a 3-card grid for pillars/values, process steps, contact info, or other content that is not a browsable collection — use `FeatureItem` (icon + label row), `TimelineItem` (numbered/sequential steps), or `InfoBlock` (label + content pair) instead.
 - Keep CSS tokenized and theme-aware.
 - Prefer lightweight CSS and progressive enhancement for motion before adding heavy animation libraries.
 - Do not rely on motion alone to communicate meaning; pair motion with visible state cues such as color, border, text, or icon changes.
@@ -28,6 +32,7 @@ This repository is a reusable Astro template for mission-driven organizations an
 ## Page Structure Consistency
 
 - Keep a consistent page scaffold across all pages and sections: container width, section spacing, and gap scale should follow shared tokens and existing layout classes.
+- Keep vertical rhythm consistent by reusing shared section spacing classes, not one-off padding values.
 - Maintain consistent typography usage: shared heading/body styles, text rhythm, and component text patterns should match existing sections.
 - Maintain consistent interaction styles: hover, focus-visible, and active states should reuse existing component behavior and tokenized styles.
 - Keep motion behavior consistent: use shared duration/easing tokens and provide reduced-motion fallbacks.

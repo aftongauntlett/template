@@ -1,0 +1,701 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import FeatureItem from '../components/ui/FeatureItem.astro';
+import TimelineItem from '../components/ui/TimelineItem.astro';
+import InfoBlock from '../components/ui/InfoBlock.astro';
+import StyledDropdown from '../components/ui/StyledDropdown.astro';
+
+if (!import.meta.env.DEV) {
+  return Astro.redirect('/');
+}
+
+const selectOptions = [
+  { value: 'newsletter', label: 'Newsletter signup' },
+  { value: 'volunteer', label: 'Volunteer interest' },
+  { value: 'donation', label: 'Donation support' },
+] as const;
+---
+
+<BaseLayout
+  title="Example Page"
+  description="Component and layout reference page for composition-first site building."
+>
+  <section class="section stack" id="overview">
+    <p class="kicker">Example Page</p>
+    <h1>Template reference for colors, components, and intake.</h1>
+    <p class="hero-copy">
+      Use the exact names on this page when prompting the agent, for example "use Component: Card under
+      the hero and place Component: Button below it".
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="example-tabs" data-example-tabs>
+      <div class="example-tabs__nav" role="tablist" aria-label="Example page sections">
+        <button
+          type="button"
+          class="example-tabs__tab"
+          role="tab"
+          aria-selected="true"
+          aria-controls="example-panel-colors"
+          id="example-tab-colors"
+          data-example-tab="colors"
+        >
+          Colors
+        </button>
+        <button
+          type="button"
+          class="example-tabs__tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="example-panel-components"
+          id="example-tab-components"
+          data-example-tab="components"
+        >
+          Components
+        </button>
+        <button
+          type="button"
+          class="example-tabs__tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="example-panel-intake"
+          id="example-tab-intake"
+          data-example-tab="intake"
+        >
+          Intake
+        </button>
+      </div>
+
+      <div
+        id="example-panel-colors"
+        class="example-tabs__panel is-active"
+        role="tabpanel"
+        aria-labelledby="example-tab-colors"
+        data-example-panel="colors"
+      >
+        <div class="stack">
+          <p class="kicker">Theme Tokens</p>
+          <h2>Primary, secondary, and accent map to these roles.</h2>
+          <p>
+            Colors are defined as CSS custom properties in src/styles/global.css. Use these same names in
+            prompts when asking for style updates.
+          </p>
+        </div>
+
+        <div class="demo-color-guide grid grid-3" aria-label="Theme color usage guide">
+          <article class="demo-color-guide__item">
+            <p class="demo-color-guide__name">Primary</p>
+            <div class="demo-color-guide__swatch demo-color-guide__swatch--primary"></div>
+            <p class="demo-color-guide__text">
+              Mostly used for primary actions, important buttons, and key emphasis states.
+            </p>
+          </article>
+
+          <article class="demo-color-guide__item">
+            <p class="demo-color-guide__name">Secondary</p>
+            <div class="demo-color-guide__swatch demo-color-guide__swatch--secondary"></div>
+            <p class="demo-color-guide__text">
+              Mostly used for focus rings, supportive highlights, and secondary interaction accents.
+            </p>
+          </article>
+
+          <article class="demo-color-guide__item">
+            <p class="demo-color-guide__name">Accent</p>
+            <div class="demo-color-guide__swatch demo-color-guide__swatch--accent"></div>
+            <p class="demo-color-guide__text">
+              Mostly used for hover accents, kicker text, and subtle decorative emphasis.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div
+        id="example-panel-intake"
+        class="example-tabs__panel"
+        role="tabpanel"
+        aria-labelledby="example-tab-intake"
+        data-example-panel="intake"
+      >
+        <div>
+          <p class="kicker">Project Intake</p>
+          <h2>Capture client details once, then generate working inputs.</h2>
+          <p>
+            This panel saves locally in your browser. Use it to draft a PROJECT_BRIEF.md block and a
+            ready "get started" prompt.
+          </p>
+        </div>
+
+        <form class="intake-form" data-intake-form>
+          <div class="intake-form__grid">
+            <label class="intake-form__field">
+              <span>Organization name</span>
+              <input type="text" data-intake-field="organizationName" />
+            </label>
+
+            <label class="intake-form__field">
+              <span>Primary contact</span>
+              <input type="text" data-intake-field="primaryContact" />
+            </label>
+
+            <label class="intake-form__field">
+              <span>One-sentence mission</span>
+              <textarea rows="3" data-intake-field="mission"></textarea>
+            </label>
+
+            <label class="intake-form__field">
+              <span>Primary audience</span>
+              <textarea rows="3" data-intake-field="audience"></textarea>
+            </label>
+
+            <label class="intake-form__field">
+              <span>Top outcomes (one per line)</span>
+              <textarea rows="4" data-intake-field="outcomes"></textarea>
+            </label>
+
+            <label class="intake-form__field">
+              <span>Must-have on day one</span>
+              <textarea rows="4" data-intake-field="mustHave"></textarea>
+            </label>
+
+            <label class="intake-form__field">
+              <span>Planned pages/routes (one per line)</span>
+              <textarea rows="4" data-intake-field="plannedPages"></textarea>
+            </label>
+
+            <label class="intake-form__field">
+              <span>Content and copy notes</span>
+              <textarea rows="4" data-intake-field="copyNotes"></textarea>
+            </label>
+
+            <label class="intake-form__field">
+              <span>Design direction notes</span>
+              <textarea rows="4" data-intake-field="designNotes"></textarea>
+            </label>
+
+            <label class="intake-form__field">
+              <span>Reference links (one per line)</span>
+              <textarea rows="4" data-intake-field="referenceLinks"></textarea>
+            </label>
+
+            <label class="intake-form__field intake-form__field--full">
+              <span>Font family input</span>
+              <input
+                type="text"
+                data-intake-field="fontFamily"
+                placeholder="Example: 'Public Sans', sans-serif"
+              />
+              <small>Used for local preview by setting --font-body and --font-display.</small>
+            </label>
+          </div>
+        </form>
+
+        <div class="intake-output grid grid-2">
+          <article class="intake-output__card stack">
+            <h3 class="demo-component__name">Generated: PROJECT_BRIEF.md draft</h3>
+            <textarea
+              class="intake-output__textarea"
+              data-brief-output
+              rows="16"
+              readonly
+            ></textarea>
+            <Button type="button" variant="outline" size="sm" class="copy-button copy-button--brief">
+              Copy brief draft
+            </Button>
+          </article>
+
+          <article class="intake-output__card stack">
+            <h3 class="demo-component__name">Generated: Get started prompt</h3>
+            <textarea
+              class="intake-output__textarea"
+              data-prompt-output
+              rows="16"
+              readonly
+            ></textarea>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              class="copy-button copy-button--prompt"
+            >
+              Copy get started prompt
+            </Button>
+          </article>
+        </div>
+      </div>
+
+      <div
+        id="example-panel-components"
+        class="example-tabs__panel"
+        role="tabpanel"
+        aria-labelledby="example-tab-components"
+        data-example-panel="components"
+      >
+        <div class="example-panel-intro">
+          <p class="kicker">Component Catalog</p>
+          <h2>Use these exact names in prompts.</h2>
+          <p>
+            Start here page recipe: use BaseLayout, compose from these named components, and keep
+            spacing and heading rhythm consistent with this page.
+          </p>
+        </div>
+
+        <div class="grid grid-2">
+          <Card title="Scaffold Step 1" eyebrow="Start in BaseLayout">
+            Begin with BaseLayout and add sections in this same order before doing custom tweaks.
+          </Card>
+          <Card title="Scaffold Step 2" eyebrow="Compose components">
+            Arrange named components below, then edit copy and order. Avoid one-off spacing overrides.
+          </Card>
+        </div>
+
+        <article class="demo-component stack" id="component-button">
+          <h3 class="demo-component__name">Component: Button</h3>
+          <div class="hero-actions">
+            <Button type="button" size="sm">Button (solid, sm)</Button>
+            <Button type="button">Button (solid, md)</Button>
+            <Button type="button" variant="outline">Button (outline)</Button>
+            <Button type="button" variant="ghost">Button (ghost)</Button>
+          </div>
+        </article>
+
+        <article class="demo-component stack" id="component-card">
+          <h3 class="demo-component__name">Component: Card</h3>
+          <p class="demo-component__hint">
+            Reserve Card for actual browsable collections with distinct entries to scan, such as blog
+            posts or workshop listings. Do not reach for it as the default 3-item section layout; use
+            FeatureItem, TimelineItem, or InfoBlock instead when content is not a browsable collection.
+          </p>
+          <div class="grid grid-2">
+            <Card title="Card" eyebrow="Default card surface">
+              Use this for feature blocks, testimonials, stats, and simple content groups.
+            </Card>
+            <Card title="Card with Link" eyebrow="Linked variant" href="/example">
+              Card titles can be linked while preserving shared spacing and styling.
+            </Card>
+          </div>
+        </article>
+
+        <article class="demo-component stack" id="component-feature-item">
+          <h3 class="demo-component__name">Component: FeatureItem</h3>
+          <p class="demo-component__hint">
+            Use for short value-prop or pillar-style content where items don't need to look like
+            separate boxes, such as 3-4 feature highlights.
+          </p>
+          <ul class="feature-row">
+            <FeatureItem title="Accessible by default">
+              <Fragment slot="icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </Fragment>
+              Keyboard support and visible focus states come standard with every component.
+            </FeatureItem>
+            <FeatureItem title="Tokenized styling">
+              <Fragment slot="icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                </svg>
+              </Fragment>
+              Colors, spacing, and radii all pull from shared design tokens.
+            </FeatureItem>
+            <FeatureItem title="Composable by design">
+              <Fragment slot="icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <rect x="4" y="4" width="16" height="16" rx="3" />
+                </svg>
+              </Fragment>
+              Mix and match layout primitives instead of defaulting to a card grid.
+            </FeatureItem>
+          </ul>
+        </article>
+
+        <article class="demo-component stack" id="component-timeline-item">
+          <h3 class="demo-component__name">Component: TimelineItem</h3>
+          <p class="demo-component__hint">
+            Use for sequential or "coming soon" content, such as process steps or a workshop schedule,
+            where order matters more than browsability.
+          </p>
+          <ol class="timeline">
+            <TimelineItem title="Kickoff call" eyebrow="Week 1">
+              Confirm mission, audience, and scope with the client.
+            </TimelineItem>
+            <TimelineItem title="Draft review" eyebrow="Week 2">
+              Share the Home and Example pages for feedback.
+            </TimelineItem>
+            <TimelineItem title="Launch" eyebrow="Week 3">
+              Ship the site and hand off documentation.
+            </TimelineItem>
+          </ol>
+        </article>
+
+        <article class="demo-component stack" id="component-info-block">
+          <h3 class="demo-component__name">Component: InfoBlock</h3>
+          <p class="demo-component__hint">
+            Use for label-plus-content pairs, such as contact details or a single description, without
+            wrapping the content in a bordered card.
+          </p>
+          <div class="stack">
+            <InfoBlock label="Email" href="mailto:hello@example.org">hello@example.org</InfoBlock>
+            <InfoBlock label="Phone" href="tel:+15555550123">+1 (555) 555-0123</InfoBlock>
+            <InfoBlock label="Address">123 Main Street, Springfield</InfoBlock>
+          </div>
+        </article>
+
+        <article class="demo-component stack" id="component-styled-dropdown">
+          <h3 class="demo-component__name">Component: StyledDropdown</h3>
+          <p class="demo-component__hint">
+            Use this for select controls in forms and settings. This example shows the default label-above
+            layout for clearer reading order.
+          </p>
+          <StyledDropdown
+            id="example-dropdown"
+            name="example-dropdown"
+            label="Example select"
+            options={selectOptions}
+            ariaLabel="Example select control"
+          />
+        </article>
+
+        <article class="demo-component stack" id="component-layout-shells">
+          <h3 class="demo-component__name">Layout: BaseLayout</h3>
+          <Card title="BaseLayout" eyebrow="Default page shell">
+            Use for all pages. Keep structure simple and compose sections inside the shared top-nav shell.
+          </Card>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-example-tabs]');
+
+    if (!(root instanceof HTMLElement)) {
+      return;
+    }
+
+    const tabs = Array.from(root.querySelectorAll('[data-example-tab]')).filter(
+      (node) => node instanceof HTMLButtonElement,
+    );
+    const panels = Array.from(root.querySelectorAll('[data-example-panel]')).filter(
+      (node) => node instanceof HTMLElement,
+    );
+
+    if (tabs.length === 0 || panels.length === 0) {
+      return;
+    }
+
+    const activate = (nextId) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.exampleTab === nextId;
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      panels.forEach((panel) => {
+        const isActive = panel.dataset.examplePanel === nextId;
+        panel.classList.toggle('is-active', isActive);
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const nextId = tab.dataset.exampleTab;
+        if (!nextId) {
+          return;
+        }
+        activate(nextId);
+      });
+
+      tab.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') {
+          return;
+        }
+
+        event.preventDefault();
+
+        const direction = event.key === 'ArrowRight' ? 1 : -1;
+        const currentIndex = tabs.findIndex((node) => node === tab);
+        const nextIndex = (currentIndex + direction + tabs.length) % tabs.length;
+        const nextTab = tabs[nextIndex];
+        const nextId = nextTab?.dataset.exampleTab;
+
+        if (!nextTab || !nextId) {
+          return;
+        }
+
+        activate(nextId);
+        nextTab.focus();
+      });
+    });
+
+    const intakeForm = root.querySelector('[data-intake-form]');
+    const briefOutput = root.querySelector('[data-brief-output]');
+    const promptOutput = root.querySelector('[data-prompt-output]');
+    const copyButtons = Array.from(root.querySelectorAll('.copy-button')).filter(
+      (node) => node instanceof HTMLButtonElement,
+    );
+
+    if (
+      !(intakeForm instanceof HTMLFormElement) ||
+      !(briefOutput instanceof HTMLTextAreaElement) ||
+      !(promptOutput instanceof HTMLTextAreaElement)
+    ) {
+      return;
+    }
+
+    const intakeKey = 'site-example-intake-v1';
+    const intakeFields = Array.from(intakeForm.querySelectorAll('[data-intake-field]')).filter(
+      (node) => node instanceof HTMLInputElement || node instanceof HTMLTextAreaElement || node instanceof HTMLSelectElement,
+    );
+
+    const defaultIntake = {
+      organizationName: '',
+      primaryContact: '',
+      mission: '',
+      audience: '',
+      outcomes: '',
+      mustHave: '',
+      plannedPages: '',
+      copyNotes: '',
+      designNotes: '',
+      referenceLinks: '',
+      fontFamily: '',
+    };
+
+    const parseLineList = (value) =>
+      value
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+    const numberedList = (value, fallbackCount = 3) => {
+      const items = parseLineList(value);
+
+      if (items.length === 0) {
+        return Array.from({ length: fallbackCount }, (_, index) => `${index + 1}.`).join('\n');
+      }
+
+      return items.map((item, index) => `${index + 1}. ${item}`).join('\n');
+    };
+
+    const bulletList = (value) => {
+      const items = parseLineList(value);
+      return items.length === 0 ? '-' : items.map((item) => `- ${item}`).join('\n');
+    };
+
+    const readStoredIntake = () => {
+      try {
+        const raw = localStorage.getItem(intakeKey);
+        if (!raw) {
+          return { ...defaultIntake };
+        }
+
+        return { ...defaultIntake, ...JSON.parse(raw) };
+      } catch {
+        return { ...defaultIntake };
+      }
+    };
+
+    const applyFontPreview = (fontFamily) => {
+      const rootElement = document.documentElement;
+      const normalized = typeof fontFamily === 'string' ? fontFamily.trim() : '';
+
+      if (normalized.length === 0) {
+        rootElement.style.removeProperty('--font-body');
+        rootElement.style.removeProperty('--font-display');
+        return;
+      }
+
+      rootElement.style.setProperty('--font-body', normalized);
+      rootElement.style.setProperty('--font-display', normalized);
+    };
+
+    const collectIntake = () => {
+      const next = { ...defaultIntake };
+
+      intakeFields.forEach((field) => {
+        const key = field.dataset.intakeField;
+        if (!key) {
+          return;
+        }
+
+        next[key] = field.value;
+      });
+
+      return next;
+    };
+
+    const applyIntakeToFields = (intake) => {
+      intakeFields.forEach((field) => {
+        const key = field.dataset.intakeField;
+        if (!key || !(key in intake)) {
+          return;
+        }
+
+        field.value = intake[key] ?? '';
+      });
+    };
+
+    const buildBriefDraft = (intake) => {
+      return `# Project Brief
+
+## Client Snapshot
+
+- Company/organization name: ${intake.organizationName || ''}
+- Primary contact: ${intake.primaryContact || ''}
+- Industry or domain:
+- One-sentence mission: ${intake.mission || ''}
+- Primary audience: ${intake.audience || ''}
+
+## Success Criteria
+
+- Top 3 outcomes:
+${numberedList(intake.outcomes)}
+- Launch deadline:
+- Must-have on day one:
+${intake.mustHave || ''}
+- Phase two items:
+
+## Scope
+
+- Project mode: content-first
+- Planned pages/routes:
+${numberedList(intake.plannedPages)}
+
+## Feature Levels
+
+- Auth/login: none
+- Ecommerce/cart/checkout: none
+- Scheduling/calendars: none
+- Contact forms/email: none
+- CMS/content editing: none
+
+## Operations
+
+- Hosting target:
+- Domain and DNS owner:
+- Service account ownership:
+- Free-tier keepalive needed: no
+
+## Design Direction
+
+- Preferred layout shell: BaseLayout
+- Font family input: ${intake.fontFamily || ''}
+- Design notes:
+${bulletList(intake.designNotes)}
+
+## Content Inputs
+
+- Copy notes:
+${bulletList(intake.copyNotes)}
+
+- Reference links:
+${bulletList(intake.referenceLinks)}
+
+## Done Definition
+
+- Handoff must include:
+1.
+2.
+3.
+`;
+    };
+
+    const buildGetStartedPrompt = (intake) => {
+      return `Use Site Builder mode.
+Reference and follow these files first:
+- docs/AGENT_QUICKSTART.md
+- docs/agents/site-builder/README.md
+- docs/STANDARDS.md
+- docs/WCAG_2.2_CHECKLIST.md
+- docs/AGENT_PROMPT_OPENERS.md
+
+Get started using PROJECT_BRIEF.md as source of truth.
+
+Working constraints:
+- Reuse existing components and tokens only.
+- Do not create new components/routes/endpoints/utilities/dependencies.
+- Keep spacing and layout structure consistent with Example scaffold.
+
+Project notes from intake:
+- Preferred layout shell: BaseLayout
+- Font family input: ${intake.fontFamily || 'system-ui, sans-serif'}
+- Mission: ${intake.mission || ''}
+- Audience: ${intake.audience || ''}
+
+When complete, run npm run validate and summarize changed files.`;
+    };
+
+    const refreshGeneratedOutputs = () => {
+      const intake = collectIntake();
+
+      localStorage.setItem(intakeKey, JSON.stringify(intake));
+      applyFontPreview(intake.fontFamily);
+
+      briefOutput.value = buildBriefDraft(intake);
+      promptOutput.value = buildGetStartedPrompt(intake);
+    };
+
+    const initialIntake = readStoredIntake();
+    applyIntakeToFields(initialIntake);
+    refreshGeneratedOutputs();
+
+    intakeFields.forEach((field) => {
+      field.addEventListener('input', refreshGeneratedOutputs);
+      field.addEventListener('change', refreshGeneratedOutputs);
+    });
+
+    const copyText = async (value) => {
+      try {
+        await navigator.clipboard.writeText(value);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+
+    copyButtons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        const text = button.classList.contains('copy-button--prompt')
+          ? promptOutput.value
+          : briefOutput.value;
+        const copied = await copyText(text);
+
+        const original = button.textContent;
+        button.textContent = copied ? 'Copied' : 'Copy failed';
+
+        window.setTimeout(() => {
+          button.textContent = original;
+        }, 1200);
+      });
+    });
+  })();
+</script>

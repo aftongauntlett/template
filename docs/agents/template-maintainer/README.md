@@ -32,7 +32,3 @@ Maintain and improve the reusable template system.
 4. docs/WCAG_2.2_CHECKLIST.md
 5. docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md (when changing shared layout/styles/components)
 6. docs/agents/template-maintainer/BACKEND_ENABLEMENT.md (only when backend is requested)
-7. docs/PRD_MOTION_AND_INTERACTION_COMPONENTS.md (when planning reusable motion/hover primitives)
-8. docs/PRD_LAYOUT_VARIANTS.md (when planning reusable layout shells)
-9. docs/PRD_COMPONENT_LIBRARY_ROADMAP.md (when planning reusable component expansion)
-10. docs/PRD_VISUAL_BUILDER_FEASIBILITY.md (when evaluating browser-based composition workflows)

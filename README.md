@@ -27,14 +27,10 @@ Reference docs:
 - docs/WCAG_2.2_CHECKLIST.md
 - docs/AGENT_PROMPT_OPENERS.md
 - docs/AGENT_QUICKSTART.md
-- docs/PRD_LAYOUT_VARIANTS.md
-- docs/PRD_COMPONENT_LIBRARY_ROADMAP.md
 - docs/agents/template-maintainer/README.md
 - docs/agents/site-builder/README.md
 - docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md
 - docs/agents/template-maintainer/BACKEND_ENABLEMENT.md
-- docs/PRD_MOTION_AND_INTERACTION_COMPONENTS.md
-- docs/PRD_VISUAL_BUILDER_FEASIBILITY.md
 
 ## Create New Projects From This Template (GitHub)
 
@@ -105,7 +101,6 @@ This gives fast local quality checks before each commit, even when working direc
 ├── src/
 │   ├── components/
 │   │   ├── layout/
-│   │   ├── sections/
 │   │   └── ui/
 │   ├── config/
 │   ├── layouts/
@@ -120,9 +115,13 @@ This gives fast local quality checks before each commit, even when working direc
 
 - Reusable layout with skip link, navbar, and footer.
 - Reusable card and button components.
-- Theme token system with live theme selector.
+- Theme token system with primary/secondary/accent colors defined in src/styles/global.css.
+- Local Example intake tab with save-to-browser fields and generated PROJECT_BRIEF/prompt drafts.
 - Reusable styled dropdown with progressive enhancement (native select fallback).
-- Home page sections that can be replaced with client content.
+- Two default pages: `/` (Home) and `/example` (component catalog).
+- New pages should start from the Example page scaffold to preserve spacing and structure consistency.
+
+Note: `/example` is intended for local template work and is redirected to Home outside local dev.
 
 ## Optional Backend
 
@@ -146,7 +145,7 @@ Prompt starters:
 
 - .github/prompts/template-maintainer/maintain-template.prompt.md
 - .github/prompts/site-builder/use-template-without-new-code.prompt.md
-- .github/prompts/new-site-kickoff.prompt.md (legacy compatibility prompt)
+- .github/prompts/new-site-kickoff.prompt.md (first production draft from PROJECT_BRIEF.md)
 
 ## Notes
 

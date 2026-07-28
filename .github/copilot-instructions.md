@@ -33,7 +33,7 @@ Before creating any new UI primitive, check and reuse existing components in `sr
 - Use `src/components/ui/StyledDropdown.astro` for themed select controls. Do not create ad-hoc custom dropdowns.
 - Keep the native `<select>` as the data source for styled dropdowns (progressive enhancement only).
 - Use `src/components/ui/Button.astro` for button-like actions/links before creating one-off button markup.
-- Use `src/components/ui/Card.astro` for card surfaces before creating new one-off card patterns.
+- Use `src/components/ui/Card.astro` for card surfaces before creating new one-off card patterns. Reserve Card for browsable collections (blog posts, workshop listings) — use `FeatureItem.astro`, `TimelineItem.astro`, or `InfoBlock.astro` for pillars/values, process steps, or contact info instead of defaulting to a card grid.
 - If an icon primitive is needed and no reusable icon component exists, create one reusable icon component first, then consume it.
 - Prefer extending existing component APIs over duplicating similar components.
 
@@ -66,10 +66,6 @@ Run and pass:
 7. docs/agents/site-builder/README.md (cloned project mode)
 8. docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md (when changing shared layout/styles/components)
 9. docs/agents/template-maintainer/BACKEND_ENABLEMENT.md (only if backend is explicitly requested)
-10. docs/PRD_MOTION_AND_INTERACTION_COMPONENTS.md (when planning reusable motion/hover primitives)
-11. docs/PRD_LAYOUT_VARIANTS.md (when planning reusable layout shells)
-12. docs/PRD_COMPONENT_LIBRARY_ROADMAP.md (when planning reusable component expansion)
-13. docs/PRD_VISUAL_BUILDER_FEASIBILITY.md (when evaluating browser-based composition workflows)
 
 ## Backend Default
 

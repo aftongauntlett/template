@@ -17,10 +17,6 @@ Read in order:
 5. docs/agents/template-maintainer/README.md
 6. docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md (when changing shared layout/styles/components)
 7. docs/agents/template-maintainer/BACKEND_ENABLEMENT.md (only when backend is explicitly requested)
-8. docs/PRD_MOTION_AND_INTERACTION_COMPONENTS.md (when planning reusable motion/hover primitives)
-9. docs/PRD_LAYOUT_VARIANTS.md (when planning reusable layout shells)
-10. docs/PRD_COMPONENT_LIBRARY_ROADMAP.md (when planning reusable component expansion)
-11. docs/PRD_VISUAL_BUILDER_FEASIBILITY.md (when evaluating browser-based composition workflows)
 
 ## Mode B: Site Builder (Cloned Project)
 
@@ -55,7 +51,7 @@ Optional backend support:
 1. Confirm the mission, audience, and core pages.
 2. Reuse existing components before creating new ones.
 3. For form selects, use `src/components/ui/StyledDropdown.astro` instead of ad-hoc/native-styled dropdown implementations.
-4. For actions and surfaces, use `src/components/ui/Button.astro` and `src/components/ui/Card.astro` before creating one-off variants.
+4. For actions and surfaces, use `src/components/ui/Button.astro` and `src/components/ui/Card.astro` before creating one-off variants. Reserve `Card` for browsable collections (blog posts, workshop listings); for pillars/values, process steps, or contact info, use `FeatureItem.astro`, `TimelineItem.astro`, or `InfoBlock.astro` instead of defaulting to a card grid.
 5. If icons are needed and no icon primitive exists, create a reusable icon component first, then use it everywhere.
 6. Keep styles tokenized and theme-aware.
 7. Maintain semantic HTML and keyboard accessibility.

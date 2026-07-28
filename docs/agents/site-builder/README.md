@@ -21,6 +21,8 @@ Build pages quickly by reusing existing template structure, components, and toke
 - Update metadata and configuration content.
 - Tune layout spacing and composition using existing classes and tokens.
 - Use existing approved hover/motion variants when requested.
+- Treat Home and Example as the baseline page model for new projects.
+- When new pages are needed, start from the Example page scaffold before customizing content.
 
 ## Accessibility Requirements
 

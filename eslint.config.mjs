@@ -6,6 +6,7 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...eslintPluginAstro.configs['flat/recommended'],
+  ...eslintPluginAstro.configs['flat/jsx-a11y-recommended'],
   {
     rules: {
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],

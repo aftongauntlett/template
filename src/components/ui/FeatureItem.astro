@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  href?: string;
+  class?: string;
+}
+
+const { title, href, class: className = '' } = Astro.props;
+---
+
+<li class={`feature-item ${className}`.trim()}>
+  <span class="feature-item-icon" aria-hidden="true">
+    <slot name="icon" />
+  </span>
+  <div class="feature-item-body">
+    <p class="feature-item-title">
+      {href ? <a href={href}>{title}</a> : title}
+    </p>
+    <div class="feature-item-description">
+      <slot />
+    </div>
+  </div>
+</li>
