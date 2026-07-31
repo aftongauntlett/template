@@ -67,6 +67,9 @@ A page is ready when all are true:
 - Manual keyboard pass on desktop.
 - Manual screen-reader spot check for critical pages.
 
+<!-- template-maintainer-only:start -->
+
 ## Maintainer Note
 
 If you are changing core layout, global styles, or shared UI primitives in the template source repo, run the additional maintainer audit in `docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md`.
+<!-- template-maintainer-only:end -->

@@ -24,7 +24,7 @@ const selectOptions = [
 >
   <section class="section stack" id="overview">
     <p class="kicker">Example Page</p>
-    <h1>Template reference for colors, components, and intake.</h1>
+    <h1>Template reference for colors, components, and client snapshot.</h1>
     <p class="hero-copy">
       Use the exact names on this page when prompting the agent, for example "use Component: Card under
       the hero and place Component: Button below it".
@@ -65,7 +65,7 @@ const selectOptions = [
           id="example-tab-intake"
           data-example-tab="intake"
         >
-          Intake
+          Client Snapshot
         </button>
       </div>
 
@@ -120,8 +120,8 @@ const selectOptions = [
         data-example-panel="intake"
       >
         <div>
-          <p class="kicker">Project Intake</p>
-          <h2>Capture client details once, then generate working inputs.</h2>
+          <p class="kicker">Client Snapshot</p>
+          <h2>Drop in the few things a client usually gives you.</h2>
           <p>
             This panel saves locally in your browser. Use it to draft a PROJECT_BRIEF.md block and a
             ready "get started" prompt.
@@ -131,63 +131,28 @@ const selectOptions = [
         <form class="intake-form" data-intake-form>
           <div class="intake-form__grid">
             <label class="intake-form__field">
-              <span>Organization name</span>
-              <input type="text" data-intake-field="organizationName" />
+              <span>Business name</span>
+              <input type="text" data-intake-field="businessName" />
             </label>
 
             <label class="intake-form__field">
-              <span>Primary contact</span>
-              <input type="text" data-intake-field="primaryContact" />
+              <span>Business type / industry</span>
+              <input type="text" data-intake-field="businessType" />
             </label>
 
             <label class="intake-form__field">
-              <span>One-sentence mission</span>
-              <textarea rows="3" data-intake-field="mission"></textarea>
+              <span>Website URL</span>
+              <input type="text" data-intake-field="websiteUrl" />
             </label>
 
             <label class="intake-form__field">
-              <span>Primary audience</span>
-              <textarea rows="3" data-intake-field="audience"></textarea>
-            </label>
-
-            <label class="intake-form__field">
-              <span>Top outcomes (one per line)</span>
-              <textarea rows="4" data-intake-field="outcomes"></textarea>
-            </label>
-
-            <label class="intake-form__field">
-              <span>Must-have on day one</span>
-              <textarea rows="4" data-intake-field="mustHave"></textarea>
-            </label>
-
-            <label class="intake-form__field">
-              <span>Planned pages/routes (one per line)</span>
-              <textarea rows="4" data-intake-field="plannedPages"></textarea>
-            </label>
-
-            <label class="intake-form__field">
-              <span>Content and copy notes</span>
-              <textarea rows="4" data-intake-field="copyNotes"></textarea>
-            </label>
-
-            <label class="intake-form__field">
-              <span>Design direction notes</span>
-              <textarea rows="4" data-intake-field="designNotes"></textarea>
-            </label>
-
-            <label class="intake-form__field">
-              <span>Reference links (one per line)</span>
-              <textarea rows="4" data-intake-field="referenceLinks"></textarea>
+              <span>Colors / theme notes</span>
+              <textarea rows="4" data-intake-field="colorNotes"></textarea>
             </label>
 
             <label class="intake-form__field intake-form__field--full">
-              <span>Font family input</span>
-              <input
-                type="text"
-                data-intake-field="fontFamily"
-                placeholder="Example: 'Public Sans', sans-serif"
-              />
-              <small>Used for local preview by setting --font-body and --font-display.</small>
+              <span>Logo & image notes</span>
+              <textarea rows="4" data-intake-field="imageNotes"></textarea>
             </label>
           </div>
         </form>
@@ -471,43 +436,24 @@ const selectOptions = [
       return;
     }
 
-    const intakeKey = 'site-example-intake-v1';
+    const intakeKey = 'site-example-intake-v2';
     const intakeFields = Array.from(intakeForm.querySelectorAll('[data-intake-field]')).filter(
       (node) => node instanceof HTMLInputElement || node instanceof HTMLTextAreaElement || node instanceof HTMLSelectElement,
     );
 
     const defaultIntake = {
-      organizationName: '',
-      primaryContact: '',
-      mission: '',
-      audience: '',
-      outcomes: '',
-      mustHave: '',
-      plannedPages: '',
-      copyNotes: '',
-      designNotes: '',
-      referenceLinks: '',
-      fontFamily: '',
-    };
-
-    const parseLineList = (value) =>
-      value
-        .split('\n')
-        .map((line) => line.trim())
-        .filter(Boolean);
-
-    const numberedList = (value, fallbackCount = 3) => {
-      const items = parseLineList(value);
-
-      if (items.length === 0) {
-        return Array.from({ length: fallbackCount }, (_, index) => `${index + 1}.`).join('\n');
-      }
-
-      return items.map((item, index) => `${index + 1}. ${item}`).join('\n');
+      businessName: '',
+      businessType: '',
+      websiteUrl: '',
+      colorNotes: '',
+      imageNotes: '',
     };
 
     const bulletList = (value) => {
-      const items = parseLineList(value);
+      const items = value
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean);
       return items.length === 0 ? '-' : items.map((item) => `- ${item}`).join('\n');
     };
 
@@ -522,20 +468,6 @@ const selectOptions = [
       } catch {
         return { ...defaultIntake };
       }
-    };
-
-    const applyFontPreview = (fontFamily) => {
-      const rootElement = document.documentElement;
-      const normalized = typeof fontFamily === 'string' ? fontFamily.trim() : '';
-
-      if (normalized.length === 0) {
-        rootElement.style.removeProperty('--font-body');
-        rootElement.style.removeProperty('--font-display');
-        return;
-      }
-
-      rootElement.style.setProperty('--font-body', normalized);
-      rootElement.style.setProperty('--font-display', normalized);
     };
 
     const collectIntake = () => {
@@ -567,65 +499,13 @@ const selectOptions = [
     const buildBriefDraft = (intake) => {
       return `# Project Brief
 
-## Client Snapshot
-
-- Company/organization name: ${intake.organizationName || ''}
-- Primary contact: ${intake.primaryContact || ''}
-- Industry or domain:
-- One-sentence mission: ${intake.mission || ''}
-- Primary audience: ${intake.audience || ''}
-
-## Success Criteria
-
-- Top 3 outcomes:
-${numberedList(intake.outcomes)}
-- Launch deadline:
-- Must-have on day one:
-${intake.mustHave || ''}
-- Phase two items:
-
-## Scope
-
-- Project mode: content-first
-- Planned pages/routes:
-${numberedList(intake.plannedPages)}
-
-## Feature Levels
-
-- Auth/login: none
-- Ecommerce/cart/checkout: none
-- Scheduling/calendars: none
-- Contact forms/email: none
-- CMS/content editing: none
-
-## Operations
-
-- Hosting target:
-- Domain and DNS owner:
-- Service account ownership:
-- Free-tier keepalive needed: no
-
-## Design Direction
-
-- Preferred layout shell: BaseLayout
-- Font family input: ${intake.fontFamily || ''}
-- Design notes:
-${bulletList(intake.designNotes)}
-
-## Content Inputs
-
-- Copy notes:
-${bulletList(intake.copyNotes)}
-
-- Reference links:
-${bulletList(intake.referenceLinks)}
-
-## Done Definition
-
-- Handoff must include:
-1.
-2.
-3.
+- Business name: ${intake.businessName || ''}
+- Business type / industry: ${intake.businessType || ''}
+- Website URL (if they have one): ${intake.websiteUrl || ''}
+- Colors / theme notes:
+${bulletList(intake.colorNotes)}
+- Logo & image notes:
+${bulletList(intake.imageNotes)}
 `;
     };
 
@@ -636,7 +516,6 @@ Reference and follow these files first:
 - docs/agents/site-builder/README.md
 - docs/STANDARDS.md
 - docs/WCAG_2.2_CHECKLIST.md
-- docs/AGENT_PROMPT_OPENERS.md
 
 Get started using PROJECT_BRIEF.md as source of truth.
 
@@ -645,11 +524,10 @@ Working constraints:
 - Do not create new components/routes/endpoints/utilities/dependencies.
 - Keep spacing and layout structure consistent with Example scaffold.
 
-Project notes from intake:
-- Preferred layout shell: BaseLayout
-- Font family input: ${intake.fontFamily || 'system-ui, sans-serif'}
-- Mission: ${intake.mission || ''}
-- Audience: ${intake.audience || ''}
+Client notes:
+- Business name: ${intake.businessName || ''}
+- Business type / industry: ${intake.businessType || ''}
+- Website URL: ${intake.websiteUrl || ''}
 
 When complete, run npm run validate and summarize changed files.`;
     };
@@ -658,7 +536,6 @@ When complete, run npm run validate and summarize changed files.`;
       const intake = collectIntake();
 
       localStorage.setItem(intakeKey, JSON.stringify(intake));
-      applyFontPreview(intake.fontFamily);
 
       briefOutput.value = buildBriefDraft(intake);
       promptOutput.value = buildGetStartedPrompt(intake);

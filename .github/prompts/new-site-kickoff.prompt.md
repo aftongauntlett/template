@@ -17,7 +17,7 @@ Use this repo's standards and docs to implement the first production-ready draft
 
 Required process:
 
-1. Read PROJECT_BRIEF.md (if present), docs/PROJECT_BRIEF_TEMPLATE.md, README.md, docs/STANDARDS.md, docs/WCAG_2.2_CHECKLIST.md, and docs/agents/site-builder/README.md.
+1. Read PROJECT_BRIEF.md (if present), README.md, docs/STANDARDS.md, docs/WCAG_2.2_CHECKLIST.md, and docs/agents/site-builder/README.md.
 2. Build required pages/sections using existing components and tokens.
 3. Rearrange structure and update copy before introducing any custom implementation.
 4. Keep everything accessible and keyboard navigable.

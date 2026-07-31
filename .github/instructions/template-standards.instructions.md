@@ -7,8 +7,14 @@ Follow these standards when generating or editing code:
 
 - If `PROJECT_BRIEF.md` exists, treat it as the primary source of project scope and priorities.
 - Choose operating mode first:
-	- Template Maintainer mode: source template repo updates are allowed.
-	- Site Builder mode: cloned project updates should reuse existing components/tokens and avoid net-new architecture by default.
+
+<!-- template-maintainer-only:start -->
+
+    - Template Maintainer mode: source template repo updates are allowed.
+
+<!-- template-maintainer-only:end -->
+
+    - Site Builder mode: cloned project updates should reuse existing components/tokens and avoid net-new architecture by default.
 
 - Accessibility first: semantic HTML, keyboard support, visible focus, ARIA only when needed.
 - Meet WCAG 2.2 AA baseline.
@@ -28,7 +34,7 @@ Follow these standards when generating or editing code:
 - Update docs when behavior or setup changes.
 - Keep commit-time checks passing with `npm run precommit:check`.
 - In Site Builder mode, do not add new components/routes/endpoints/utilities unless explicitly requested.
-- Backend changes are opt-in only and should follow `docs/agents/template-maintainer/BACKEND_ENABLEMENT.md` when requested.
+- This template is static-only by default; do not add backend/server routes, auth, CMS, search, or scheduling unless explicitly requested.
 
 Before completion, run full validation:
 

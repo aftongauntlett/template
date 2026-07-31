@@ -16,6 +16,7 @@ Work in Site Builder mode unless I explicitly say Template Maintainer mode.
 
 Use Site Builder mode.
 Reference and follow these files first:
+
 - docs/AGENT_QUICKSTART.md
 - docs/agents/site-builder/README.md
 - docs/STANDARDS.md
@@ -31,6 +32,7 @@ Run npm run validate and report what changed.
 
 Use Site Builder mode.
 Reference and follow these files first:
+
 - docs/AGENT_QUICKSTART.md
 - docs/agents/site-builder/README.md
 - docs/STANDARDS.md
@@ -47,6 +49,7 @@ Run npm run validate and summarize token changes.
 
 Use Site Builder mode.
 Reference and follow these files first:
+
 - docs/AGENT_QUICKSTART.md
 - docs/agents/site-builder/README.md
 
@@ -60,6 +63,7 @@ Return a concise list of edited files and key copy changes.
 
 Use Site Builder mode.
 Reference and follow these files first:
+
 - docs/WCAG_2.2_CHECKLIST.md
 - docs/STANDARDS.md
 
@@ -69,12 +73,15 @@ Do not add new features or new components.
 Only make minimal fixes to semantics, focus behavior, contrast, labels, and reduced-motion behavior.
 Run npm run validate and report changes by severity.
 
+<!-- template-maintainer-only:start -->
+
 ## Template Maintainer Openers (Template Source Repo)
 
 ## 5) Add reusable component primitive
 
 Use Template Maintainer mode.
 Reference and follow these files first:
+
 - docs/AGENT_QUICKSTART.md
 - docs/agents/template-maintainer/README.md
 - docs/STANDARDS.md
@@ -90,6 +97,7 @@ Run npm run validate and npm run precommit:check.
 
 Use Template Maintainer mode.
 Reference and follow these files first:
+
 - docs/AGENT_QUICKSTART.md
 - docs/agents/template-maintainer/README.md
 - docs/STANDARDS.md
@@ -99,6 +107,7 @@ Add a reusable layout variant for [top nav, side nav, split content, landing her
 Keep this as shared template architecture, not one-off page markup.
 Document usage and constraints.
 Run npm run validate and npm run precommit:check.
+<!-- template-maintainer-only:end -->
 
 ## Scope Control Openers
 

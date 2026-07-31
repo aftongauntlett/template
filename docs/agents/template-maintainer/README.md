@@ -31,4 +31,3 @@ Maintain and improve the reusable template system.
 3. docs/STANDARDS.md
 4. docs/WCAG_2.2_CHECKLIST.md
 5. docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md (when changing shared layout/styles/components)
-6. docs/agents/template-maintainer/BACKEND_ENABLEMENT.md (only when backend is requested)

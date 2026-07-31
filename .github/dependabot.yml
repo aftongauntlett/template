@@ -1,29 +1,29 @@
+# Dependabot is tuned for "build once, static, forget" client sites cloned
+# from this template, not an actively maintained app. Monthly cadence, one
+# combined group, small PR cap.
+#
+# NOTE: this file only controls scheduled version-bump PRs. It does NOT
+# control Dependabot's separate vulnerability alert / security-PR feature,
+# which is a repo-level setting (Settings > Code security) and is enabled by
+# default on every generated repo. If a client site should not receive
+# security PRs either, that setting has to be turned off per-repo (or via an
+# org-level default) — this yaml cannot do it. See README.md.
+
 version: 2
 
 updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     groups:
-      astro:
+      dependencies:
         patterns:
-          - 'astro'
-          - '@astrojs/*'
-      lint-and-format:
-        patterns:
-          - 'eslint*'
-          - '@eslint/*'
-          - 'typescript-eslint'
-          - 'prettier*'
-      test-tooling:
-        patterns:
-          - 'vitest'
-          - '@vitest/*'
-          - 'jsdom'
-    open-pull-requests-limit: 10
+          - '*'
+    open-pull-requests-limit: 5
 
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
+    open-pull-requests-limit: 5

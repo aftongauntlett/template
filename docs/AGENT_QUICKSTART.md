@@ -4,6 +4,8 @@ Choose your mode first, then follow the matching instructions.
 
 For copy-ready chat starters, use docs/AGENT_PROMPT_OPENERS.md.
 
+<!-- template-maintainer-only:start -->
+
 ## Mode A: Template Maintainer (Source Template Repo)
 
 Use this mode when you are editing the reusable template itself.
@@ -16,7 +18,8 @@ Read in order:
 4. docs/WCAG_2.2_CHECKLIST.md
 5. docs/agents/template-maintainer/README.md
 6. docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md (when changing shared layout/styles/components)
-7. docs/agents/template-maintainer/BACKEND_ENABLEMENT.md (only when backend is explicitly requested)
+
+<!-- template-maintainer-only:end -->
 
 ## Mode B: Site Builder (Cloned Project)
 
@@ -41,10 +44,7 @@ Default build style:
 - Reusable components
 - Accessibility-first UI
 
-Optional backend support:
-
-- Only when explicitly requested.
-- Follow `docs/agents/template-maintainer/BACKEND_ENABLEMENT.md`.
+This template is static-only by default. Do not add backend/server routes, auth, CMS, search, or scheduling unless explicitly requested.
 
 ## Required Workflow for Agents
 
@@ -59,9 +59,12 @@ Optional backend support:
 9. In Site Builder mode, do not create new components/routes/endpoints/utilities unless explicitly requested.
 10. Add tests for new logic.
 11. Run full validation before finishing:
-   - npm run validate
+
+- npm run validate
+
 12. Ensure commit-time checks pass:
-   - npm run precommit:check
+
+- npm run precommit:check
 
 ## Default Deliverables
 

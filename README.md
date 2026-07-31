@@ -27,10 +27,20 @@ Reference docs:
 - docs/WCAG_2.2_CHECKLIST.md
 - docs/AGENT_PROMPT_OPENERS.md
 - docs/AGENT_QUICKSTART.md
+
+<!-- template-maintainer-only:start -->
+
 - docs/agents/template-maintainer/README.md
+
+<!-- template-maintainer-only:end -->
+
 - docs/agents/site-builder/README.md
+
+<!-- template-maintainer-only:start -->
+
 - docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md
-- docs/agents/template-maintainer/BACKEND_ENABLEMENT.md
+
+<!-- template-maintainer-only:end -->
 
 ## Create New Projects From This Template (GitHub)
 
@@ -54,12 +64,16 @@ Notes:
 4. Install dependencies.
 5. Start development server.
 6. Confirm git hooks are installed for commit-time checks.
+7. If this project was generated from "Use this template" (not the template
+   source repo itself), run the one-time detach step to remove
+   maintainer-only docs/prompts: `npm run detach-template`.
 
 Commands:
 
 - npm install
 - npm run dev
 - npm run hooks:install
+- npm run detach-template (new client projects only — see note above)
 
 ## Validation Commands
 
@@ -72,6 +86,29 @@ Commands:
 CI:
 
 - GitHub Actions workflow: .github/workflows/ci.yml
+
+## Dependency Updates (Dependabot)
+
+`.github/dependabot.yml` is tuned for throwaway client sites: monthly instead
+of weekly, one combined update group, and a low open-PR cap. Most projects
+cloned from this template ship once and are never revisited, so there is no
+need for frequent version-bump PRs.
+
+This file only controls scheduled version-bump PRs. It does **not** control
+Dependabot's separate vulnerability alert / security-PR feature — that is a
+repo-level setting under **Settings > Code security** (or an org-level
+default), and it stays on by default regardless of what this yaml says. If a
+client site should not receive Dependabot security PRs either, that setting
+has to be turned off per-repo after the site is created.
+
+`package.json` also pins an `overrides` entry for `brace-expansion` to a
+patched version. Several dev-only tools (eslint, eslint-plugin-jsx-a11y)
+bundle old transitive copies of `minimatch`/`brace-expansion` that npm audit
+flags as high severity (GHSA-mh99-v99m-4gvg); the override forces the whole
+tree onto a fixed version without changing any tool's declared major
+version. Re-check `npm audit` after bumping eslint or eslint-plugin-jsx-a11y
+in case upstream has since fixed this natively and the override can be
+dropped.
 
 ## Commit Guardrails (Solo Main Workflow)
 
@@ -116,34 +153,37 @@ This gives fast local quality checks before each commit, even when working direc
 - Reusable layout with skip link, navbar, and footer.
 - Reusable card and button components.
 - Theme token system with primary/secondary/accent colors defined in src/styles/global.css.
-- Local Example intake tab with save-to-browser fields and generated PROJECT_BRIEF/prompt drafts.
+- Local Example Client Snapshot tab with save-to-browser fields and generated PROJECT_BRIEF/prompt drafts.
 - Reusable styled dropdown with progressive enhancement (native select fallback).
 - Two default pages: `/` (Home) and `/example` (component catalog).
 - New pages should start from the Example page scaffold to preserve spacing and structure consistency.
 
 Note: `/example` is intended for local template work and is redirected to Home outside local dev.
 
-## Optional Backend
-
-Backend features are not included by default.
-
-If backend behavior is explicitly requested, use:
-
-- docs/agents/template-maintainer/BACKEND_ENABLEMENT.md
-
 ## Agent Workflow
 
 For AI-assisted implementation:
 
-1. Fill PROJECT_BRIEF.md using docs/PROJECT_BRIEF_TEMPLATE.md.
+1. Fill in PROJECT_BRIEF.md with whatever the client gave you (name, type, URL, colors, logo/images).
 2. Select agent mode in docs/AGENT_QUICKSTART.md.
 3. In cloned projects, prioritize rearranging existing components, updating copy, metadata, and tokens.
+
+<!-- template-maintainer-only:start -->
+
 4. In this template source repo, implement reusable code changes when new features are requested.
+
+<!-- template-maintainer-only:end -->
+
 5. Run npm run validate and resolve failures.
 
 Prompt starters:
 
+<!-- template-maintainer-only:start -->
+
 - .github/prompts/template-maintainer/maintain-template.prompt.md
+
+<!-- template-maintainer-only:end -->
+
 - .github/prompts/site-builder/use-template-without-new-code.prompt.md
 - .github/prompts/new-site-kickoff.prompt.md (first production draft from PROJECT_BRIEF.md)
 

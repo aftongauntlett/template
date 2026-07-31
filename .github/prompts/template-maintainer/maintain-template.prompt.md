@@ -14,10 +14,6 @@ Read first:
 4. docs/WCAG_2.2_CHECKLIST.md
 5. docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md (when changing shared layout/styles/components)
 
-If backend is explicitly requested, also read:
-
-- docs/agents/template-maintainer/BACKEND_ENABLEMENT.md
-
 Required process:
 
 1. Confirm requested scope.

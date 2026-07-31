@@ -6,14 +6,19 @@ Always treat this repository as a reusable Astro project template.
 
 Pick one mode before making changes:
 
-1. Template Maintainer mode:
-	- Use when working on this source template repository itself.
-	- You may add or refactor template code, components, and architecture.
-	- Read `docs/agents/template-maintainer/README.md` first.
-2. Site Builder mode:
-	- Use when working in a repository cloned from this template.
-	- Default to content/theme/layout updates using existing assets only.
-	- Read `docs/agents/site-builder/README.md` first.
+<!-- template-maintainer-only:start -->
+
+- Template Maintainer mode:
+  - Use when working on this source template repository itself.
+  - You may add or refactor template code, components, and architecture.
+  - Read `docs/agents/template-maintainer/README.md` first.
+
+<!-- template-maintainer-only:end -->
+
+- Site Builder mode:
+  - Use when working in a repository cloned from this template.
+  - Default to content/theme/layout updates using existing assets only.
+  - Read `docs/agents/site-builder/README.md` first.
 
 ## Required Standards
 
@@ -62,11 +67,17 @@ Run and pass:
 3. docs/STANDARDS.md
 4. docs/WCAG_2.2_CHECKLIST.md
 5. docs/AGENT_QUICKSTART.md
+
+<!-- template-maintainer-only:start -->
+
 6. docs/agents/template-maintainer/README.md (template source mode)
+
+<!-- template-maintainer-only:end -->
+
 7. docs/agents/site-builder/README.md (cloned project mode)
+
+<!-- template-maintainer-only:start -->
+
 8. docs/agents/template-maintainer/ACCESSIBILITY_AUDIT_NOTE.md (when changing shared layout/styles/components)
-9. docs/agents/template-maintainer/BACKEND_ENABLEMENT.md (only if backend is explicitly requested)
 
-## Backend Default
-
-Backend is opt-in. Do not add backend scaffolding unless explicitly requested.
+<!-- template-maintainer-only:end -->
