@@ -10,4 +10,8 @@ export const SITE = {
   ],
   contactEmail: 'hello@example.org',
   yearStarted: 2026,
+  builtBy: {
+    name: 'Pretty Pretty Pretty Good',
+    url: 'https://www.prettyprettyprettygood.org/',
+  },
 } as const;

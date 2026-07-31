@@ -2,31 +2,53 @@
 import { SITE } from '../../config/site';
 
 const year = new Date().getFullYear();
+const copyrightYears = SITE.yearStarted === year ? `${year}` : `${SITE.yearStarted}–${year}`;
 ---
 
 <footer class="site-footer">
   <div class="site-footer-inner container">
-    <div class="footer-copy">
-      <p>{SITE.name}</p>
-      <p>
-        Built for mission-first orgs. {SITE.yearStarted} - {year}
+    <div class="footer-col footer-col--start">
+      <a href="/" class="brand" aria-label={`Go to ${SITE.name} homepage`}>
+        <span class="brand-kicker">Template</span>
+        <span class="brand-name">{SITE.shortName}</span>
+      </a>
+      <a href={`mailto:${SITE.contactEmail}`} class="footer-contact">
+        {SITE.contactEmail}
+      </a>
+    </div>
+
+    <div class="footer-col footer-col--center">
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          {
+            SITE.footerLinks.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <p class="footer-copyright">&copy; {copyrightYears} {SITE.name}</p>
+      <p class="footer-built-by">
+        Built by <a href={SITE.builtBy.url} target="_blank" rel="noopener noreferrer">{SITE.builtBy.name}</a>
       </p>
     </div>
 
-    <nav aria-label="Footer">
-      <ul class="footer-links">
-        {
-          SITE.footerLinks.map((item) => (
-            <li>
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-
-    <a href={`mailto:${SITE.contactEmail}`} class="footer-contact" aria-label="Send an email">
-      {SITE.contactEmail}
-    </a>
+    <div class="footer-col footer-col--end">
+      <button type="button" class="back-to-top" data-back-to-top aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M12 19V5" />
+          <path d="M5 12l7-7 7 7" />
+        </svg>
+      </button>
+    </div>
   </div>
 </footer>
+
+<script>
+  const backToTop = document.querySelector<HTMLButtonElement>('[data-back-to-top]');
+  backToTop?.addEventListener('click', () => {
+    window.scrollTo({ top: 0 });
+  });
+</script>
